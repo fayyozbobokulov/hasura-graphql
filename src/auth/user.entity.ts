@@ -8,6 +8,7 @@ import {
 } from 'typeorm';
 import * as bcrypt from 'bcrypt';
 import { Task } from 'src/tasks/task.entity';
+import { Matches } from 'class-validator';
 
 @Entity()
 @Unique(['username'])
@@ -19,6 +20,7 @@ export class User extends BaseEntity {
   username: string;
 
   @Column()
+  @Matches(/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/)
   password: string;
 
   @Column()
